@@ -1,0 +1,413 @@
+<html>
+
+<head>
+    <title>The Logic Game</title>
+
+    
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <script src="js/logicgame.js"></script>
+
+    <style type="text/css">
+        .tg {
+            margin: 25px 25px 25px 25px;
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 70%;
+            height: 70%;
+            table-layout: fixed;
+        }
+        
+        .tg th {
+            padding: 1px 1px;
+            margin: 25px 25px 25px 25px;
+        }
+        
+        .tg .tg-sh07 {
+            text-align: center;
+            vertical-align: center;
+            
+            height: 55px;
+        }
+        
+        .truthvalue {
+            padding: 5px 5px;
+            margin: 25px 25px 25px 25px;
+            border-style: solid;
+            border-width: 3px;
+            
+        }
+        
+        .arrow {}
+        
+        .empty {
+            border: none;
+            background-color: none;
+        }
+        
+        .tilde{
+            vertical-align: top;
+            
+        } 
+    </style>
+
+
+
+</head>
+
+<body onload="startGame()";>
+
+    <div><center>
+        <h1>The Logic Game</h1>
+        
+        </center>
+
+
+    </div>
+    
+   
+
+    <hr/>
+    
+    
+
+    <center><div style="margin-bottom: 20px">
+
+        <h4></h4>
+
+
+    </div></center>
+    
+    <center><div  style="margin-bottom: 20px">
+
+        <h2 id="message"></h2>
+
+
+    </div></center>
+    
+    
+
+    <center><div style="margin-bottom: 20px">
+        <!-- `greet` is the name of a method defined below -->
+        <button class="btn" onclick="reloadPage();">Reset Game</button>
+
+    </div></center>
+
+
+
+
+<center>    <table class="tg">
+        <tr>
+
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <td class="tg-sh07 truthvalue">
+                <p id="tv1"></p>
+            </td>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <td class="tg-sh07 truthvalue">
+                <p id="tv2"></p>
+            </td>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <td class="tg-sh07 truthvalue">
+                <p id="tv3"></p>
+            </td>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <td class="tg-sh07 truthvalue">
+                <p id="tv4"></p>
+            </td>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+
+        </tr>
+        <tr>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">
+                <p class="arrow"> &#11018;</p>
+            </th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">&#11019;</th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">&#11018;</th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">&#11019;</th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">&#11018;</th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">&#11019;</th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+        </tr>
+        <tr>
+            <td class="tg-sh07 truthvalue">
+                <p id="tv5"></p>
+            </td>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">
+                
+                <div><button class="btn tilde" id="tilde1" onclick="chBool1()" disabled>~</button></div>
+
+
+
+            </th>
+            <th class="tg-sh07 bool" id="bool1">
+                <form>
+                    <select class="form-control drop" id="1" onchange="setOp1()">
+                    <option value="?">?</option>
+                      <option value="^">^</option>
+                      <option value="v">v</option>
+                      <option value="t">&#8835;</option>
+                      <option value="o">&#8801;</option>
+                </select>
+                </form>
+            </th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">
+                <div><button class="btn tilde" id="tilde2" onclick="chBool2()" disabled>~</button></div>
+            </th>
+            
+            <th class="tg-sh07" id="bool2">
+                <form>
+                    <select class="form-control drop" id="2" onchange="setOp2()">
+                    <option value="?">?</option>
+                      <option value="^">^</option>
+                      <option value="v">v</option>
+                      <option value="t">&#8835;</option>
+                      <option value="o">&#8801;</option>
+                </select>
+                </form>
+            </th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">
+                <div><button class="btn tilde" id="tilde3" onclick="chBool3()" disabled>~</button></div>
+            </th>
+            <th class="tg-sh07" id="bool3">
+                <form>
+                    <select class="form-control drop" id="3" onchange="setOp3()">
+                    <option value="?">?</option>
+                      <option value="^">^</option>
+                      <option value="v">v</option>
+                      <option value="t">&#8835;</option>
+                      <option value="o">&#8801;</option>
+                </select>
+                </form>
+            </th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <td class="tg-sh07 truthvalue">
+                <p id="tv6"></p>
+            </td>
+        </tr>
+        <tr>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">&#11018;</th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">&#11019;</th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">&#11018;</th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">&#11019;</th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">&#11018;</th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">&#11019;</th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">&#11018;</th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">&#11019;</th>
+            <th class="tg-sh07"></th>
+        </tr>
+        <tr>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">
+                <div><button class="btn tilde" id="tilde4" onclick="chBool4()">~</button></div>
+            </th>
+            <th class="tg-sh07" id="bool4">
+                <form>
+                    <select class="form-control drop" id="4" onchange="setOp4()" disabled>
+                    <option value="?">?</option>
+                      <option value="^">^</option>
+                      <option value="v">v</option>
+                      <option value="t">&#8835;</option>
+                      <option value="o">&#8801;</option>
+                </select>
+                </form>
+            </th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">
+                <div><button class="btn tilde" id="tilde5" onclick="chBool5()" disabled>~</button></div>
+            </th>
+            <th class="tg-sh07" id="bool5">
+                <form>
+                    <select class="form-control drop" id="5" onchange="setOp5()" disabled>
+                    <option value="?">?</option>
+                      <option value="^">^</option>
+                      <option value="v">v</option>
+                      <option value="t">&#8835;</option>
+                      <option value="o">&#8801;</option>
+                </select>
+                </form>
+            </th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">
+                <div><button class="btn tilde" id="tilde6" onclick="chBool6()" disabled>~</button></div>
+            </th>
+            <th class="tg-sh07" id="bool6">
+                <form>
+                    <select class="form-control drop" id="6" onchange="setOp6()" disabled>
+                    <option value="?">?</option>
+                      <option value="^">^</option>
+                      <option value="v">v</option>
+                      <option value="t">&#8835;</option>
+                      <option value="o">&#8801;</option>
+                </select>
+                </form>
+            </th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">
+                <div><button class="btn tilde" id="tilde7" onclick="chBool7()" disabled>~</button></div>
+            </th>
+            <th class="tg-sh07" id="bool7">
+                <form>
+                    <select class="form-control drop" id="7" onchange="setOp7()" disabled>
+                    <option value="?">?</option>
+                      <option value="^">^</option>
+                      <option value="v">v</option>
+                      <option value="t">&#8835;</option>
+                      <option value="o">&#8801;</option>
+                </select>
+                </form>
+            </th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+        </tr>
+        <tr>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">&#11018;</th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">&#11019;</th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">&#11018;</th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">&#11019;</th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+
+        </tr>
+
+        <tr>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07" id="bool8">
+                <form>
+                    <select class="form-control drop" id="8" onchange="setOp8()" disabled>
+                    <option value="?">?</option>
+                      <option value="^">^</option>
+                      <option value="v">v</option>
+                      <option value="t">&#8835;</option>
+                      <option value="o">&#8801;</option>
+                </select>
+                </form>
+            </th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07" id="bool9">
+                <form>
+                    <select class="form-control drop" id="9" onchange="setOp9()" disabled>
+                    <option value="?">?</option>
+                      <option value="^">^</option>
+                      <option value="v">v</option>
+                      <option value="t">&#8835;</option>
+                      <option value="o">&#8801;</option>
+                </select>
+                </form>
+            </th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+        </tr>
+        <tr>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">&#11018;</th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">&#11019;</th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+
+        </tr>
+        <tr>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07">&#8594;</th>
+            <th class="tg-sh07">&#8594;</th>
+            <th class="tg-sh07 truthvalue" id="final">&#8801;</th>
+            <th class="tg-sh07">&#8592;</th>
+            <th class="tg-sh07">&#8592;</th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+            <th class="tg-sh07"></th>
+
+        </tr>
+
+    </table></center>
+
+
+
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+        <script src="js/logicgame.js"></script>
+
+
+</body>
+
+</html>
